@@ -82,19 +82,28 @@ Listado.prototype.obtenerHorarios = function() {
 Listado.prototype.obtenerRestaurantes = function(filtroRubro, filtroCiudad, filtroHorario) {
     var restaurantesFiltrados = this.restaurantes;
     if (filtroRubro !== null) {
-        restaurantesFiltrados = restaurantesFiltrados.filter(restaurant => restaurant.rubro == filtroRubro);
+        restaurantesFiltrados = listado.filtrarRestaurantes(restaurantesFiltrados, 'rubro', filtroRubro);
     }
 
     if (filtroCiudad !== null) {
-        restaurantesFiltrados = restaurantesFiltrados.filter(restaurant => restaurant.ubicacion == filtroCiudad);
+        restaurantesFiltrados = listado.filtrarRestaurantes(restaurantesFiltrados, 'ubicacion', filtroCiudad);
     }
 
     if (filtroHorario !== null) {
-        restaurantesFiltrados = restaurantesFiltrados.filter(function(res) {
-            return res.horarios.some(horario => horario == filtroHorario);
-        });
+        restaurantesFiltrados = listado.filtrarRestaurantes(restaurantesFiltrados, 'horario', filtroHorario);
     }
     return restaurantesFiltrados;
+}
+
+Listado.prototype.filtrarRestaurantes = function(listadoRestaurantes, tipo, filtro) {
+    if (tipo === 'horario') {
+        listadoRestaurantes = listadoRestaurantes.filter(function(res) {
+            return res.horarios.some(horario => horario == filtro);
+        });    
+    } else {
+        listadoRestaurantes = listadoRestaurantes.filter(restaurant => restaurant[tipo] == filtro);
+    }
+    return listadoRestaurantes;
 }
 
 Listado.prototype.filtrar = function(arrayElementos) {
@@ -102,12 +111,6 @@ Listado.prototype.filtrar = function(arrayElementos) {
         return index === self.indexOf(elem);
     });
 }
-//TODO modularizar el filtrado de restaurantes
-// Listado.prototype.filtrarRes = function(tipo, filtro) {
-//     if (tipo === 'horario') {
-
-//     }
-// }
 
 //Se crea el listado de restaurantes de la aplicación. Si queres agregar un restaurante nuevo, podes agregarlo desde aca, siempre
 //verificando que no se repita el id que agregues.

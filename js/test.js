@@ -9,7 +9,7 @@ describe("Clase Restaurant", function(){
 
   describe('Reservar Horario', function(){
 
-    it('expect remove to schedules array', function(){
+    it('removes the schedule if the reservation is correct', function(){
       resTest.reservarHorario("12:00");
       expect(resTest.horarios).to.not.include("12:00");
     })
@@ -130,6 +130,34 @@ describe("Clase Listado", function(){
       expect(res.length).to.equal(0);
     })
 
+  })
+
+})
+
+describe("Clase Reserva", function(){
+  var reserva1;
+  var reserva2;
+  beforeEach(function(){
+    reserva1 = new Reserva (new Date(2018, 7, 24, 11, 00), 8, 350, "DES1");
+    reserva2 = new Reserva (new Date(2018, 7, 27, 14, 100), 2, 150, "DES200");  
+  })
+
+  describe('Calcular Precio Base', function(){
+
+    it('return base price if the reservation is correct', function(){
+      var basePrice = reserva1.calcularPrecioBase();
+      expect(basePrice).to.equal(2800);
+    })
+
+  })
+
+  describe('Calcular Precio Final', function(){
+
+    it('return final price if the reservation is correct', function(){
+      var finalPrice = reserva2.calcularPrecioFinal();
+      expect(finalPrice).to.equal(100);
+    })
+    
   })
 
 })

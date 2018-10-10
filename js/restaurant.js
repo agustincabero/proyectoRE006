@@ -28,16 +28,16 @@ Restaurant.prototype.obtenerPuntuacion = function() {
 
 }
 
+Restaurant.prototype.promedio = function(arrayNumeros) {
+    var suma = this.sumatoria(arrayNumeros);
+    var res = suma / arrayNumeros.length;
+    return Math.round(res * 10) / 10;
+}
+
 Restaurant.prototype.sumatoria = function(arrayNumeros) {
     var res = 0;
     arrayNumeros.forEach(e => {
         res += e;
     });
     return res;
-}
-
-Restaurant.prototype.promedio = function(arrayNumeros) {
-    var suma = this.sumatoria(arrayNumeros);
-    var res = suma / arrayNumeros.length;
-    return Math.round(res * 10) / 10;
 }
