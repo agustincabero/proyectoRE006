@@ -175,7 +175,7 @@ describe("Clase Reserva", function(){
 
   before(function(){
     reserva1 = new Reserva (new Date(2018, 7, 24, 11, 00), 8, 350, "DES1");
-    reserva2 = new Reserva (new Date(2018, 7, 27, 14, 00), 2, 150, "DES200");
+    reserva2 = new Reserva (new Date(2018, 7, 27, 13, 59), 2, 150, "DES200");
     reserva3 = new Reserva (new Date(2018, 7, 28, 12, 00), 4, 200, "DES15");
     reserva4 = new Reserva (new Date(2018, 7, 21, 20, 00), 10, 300);
     reserva5 = new Reserva (new Date(2018, 7, 25, 20, 30), 6, 400, "DES1");  
@@ -194,7 +194,7 @@ describe("Clase Reserva", function(){
 
     it('return correct final price with a reservation at saturday 20:30 for 6 people with discount code DES1', function(){
       var finalPrice = reserva5.calcularPrecioFinal();
-      expect(finalPrice).to.equal(2240);
+      expect(finalPrice).to.equal(2120);
     })
 
     it('return correct final price with a reservation at tuesday 20:00 for 10 people without discount code', function(){
