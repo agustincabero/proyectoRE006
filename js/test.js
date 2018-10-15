@@ -94,7 +94,7 @@ describe("Clase Restaurant", function(){
       expect(ratings.length).to.equal(arrayAux.length + 2);
     })
 
-    it('not add calification out bounds cases', function(){
+    it('not add calification outside bounds cases', function(){
       var ratings = resTest.calificaciones;
       var arrayAux = Object.assign([], ratings);      
       resTest.calificar(0);
@@ -173,7 +173,7 @@ describe("Clase Reserva", function(){
   var reserva1;
   var reserva2;
 
-  beforeEach(function(){
+  before(function(){
     reserva1 = new Reserva (new Date(2018, 7, 24, 11, 00), 8, 350, "DES1");
     reserva2 = new Reserva (new Date(2018, 7, 27, 14, 00), 2, 150, "DES200");
     reserva3 = new Reserva (new Date(2018, 7, 28, 12, 00), 4, 200, "DES15");
